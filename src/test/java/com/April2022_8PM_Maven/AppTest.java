@@ -15,7 +15,7 @@ public class AppTest
 	}
 	@Test
 	public void launchApplication()
-	{
+	{  
 		System.out.println("RC : Launch Application");		
 		driver.get("https://gmail.com"); //1234.
 		String actualValue = driver.getTitle();
