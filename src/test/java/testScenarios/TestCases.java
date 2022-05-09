@@ -22,10 +22,10 @@ public class TestCases
 		System.setProperty("webdriver.chrome.driver", "D:\\Softwares\\JarFiles\\chromedriver-win32-90\\chromedriver.exe");
 		driver = new ChromeDriver(); //1234
 		login = new Login(driver); //1234
-		home = new Home();
-		ticketStatus = new TicketStatus();
-		cancelTicket = new CancelTicket();
-		trackService = new TrackService();
+		home = new Home(driver);
+		ticketStatus = new TicketStatus(driver);
+		cancelTicket = new CancelTicket(driver);
+		trackService = new TrackService(driver);
 	}
 	
 	
