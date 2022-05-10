@@ -2,8 +2,6 @@ package testScenarios;
 
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-
 import appUtilities.DriverSetUp;
 import pageObjects.CancelTicket;
 import pageObjects.Home;
