@@ -1,5 +1,6 @@
 package pageObjects;
 
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 import appUtilities.ApplicationUtilities;
@@ -7,14 +8,14 @@ import gUtilities.ReadProperties;
 
 public class TrackService
 {
-	ChromeDriver driver; //null
+	WebDriver driver; //null
 	ReadProperties prop;
 	ApplicationUtilities utils;
-	public TrackService(ChromeDriver driver) //1234
+	public TrackService(WebDriver driver2) //1234
 	{
-		this.driver = driver; //1234
+		this.driver = driver2; //1234
 		prop = new ReadProperties("TestData/ApsrtcDev.properties");
-		utils = new ApplicationUtilities(driver); //1234
+		utils = new ApplicationUtilities(driver2); //1234
 	}
 	public void navigateToTrackService()
 	{

@@ -1,8 +1,10 @@
 package testScenarios;
 
 import org.junit.Test;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
+import appUtilities.DriverSetUp;
 import pageObjects.CancelTicket;
 import pageObjects.Home;
 import pageObjects.Login;
@@ -11,7 +13,7 @@ import pageObjects.TrackService;
 
 public class TestCases
 {
-	ChromeDriver driver; //null
+	WebDriver driver; //null
 	Login login ; //1234
 	Home home ;
 	TicketStatus ticketStatus ;
@@ -19,8 +21,9 @@ public class TestCases
 	TrackService trackService ;
 	public TestCases()
 	{
-		System.setProperty("webdriver.chrome.driver", "D:\\Softwares\\JarFiles\\chromedriver-win32-90\\chromedriver.exe");
-		driver = new ChromeDriver(); //1234
+		//System.setProperty("webdriver.chrome.driver", "D:\\Softwares\\JarFiles\\chromedriver-win32-90\\chromedriver.exe");
+		//driver = new ChromeDriver(); //1234
+		driver = new DriverSetUp().getDriver();
 		login = new Login(driver); //1234
 		home = new Home(driver);
 		ticketStatus = new TicketStatus(driver);
