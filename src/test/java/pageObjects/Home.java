@@ -2,6 +2,7 @@ package pageObjects;
 
 import org.openqa.selenium.WebDriver;
 import appUtilities.ApplicationUtilities;
+import appUtilities.Base;
 import gUtilities.ReadProperties;
 
 public class Home
@@ -9,11 +10,11 @@ public class Home
 	WebDriver driver; //null
 	ReadProperties prop;
 	ApplicationUtilities utils;
-	public Home(WebDriver driver) //1234
+	public Home(Base base) //1234
 	{
-		this.driver = driver; //1234
-		prop = new ReadProperties("TestData/ApsrtcDev.properties");
-		utils = new ApplicationUtilities(driver); //1234
+		this.driver = base.driver; //1234
+		prop = base.data;
+		utils = base.utils; //1234
 	}
 	
 	public void navigateToHome()

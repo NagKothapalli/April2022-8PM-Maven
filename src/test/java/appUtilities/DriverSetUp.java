@@ -1,9 +1,16 @@
 package appUtilities;
 
+import java.net.MalformedURLException;
+import java.net.URL;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
+import org.openqa.selenium.remote.CapabilityType;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
+
 import gUtilities.ReadProperties;
 
 public class DriverSetUp
@@ -15,7 +22,43 @@ public class DriverSetUp
 		configData = new ReadProperties("TestData/Config.properties");
 	}
 	
-	public WebDriver getDriver()
+	public WebDriver getWebDriver()
+	{
+		if(configData.getData("ExecutionType").equalsIgnoreCase("LOCAL"))
+		{
+			driver  = getLocalDriver();
+		}
+		else if(configData.getData("ExecutionType").equalsIgnoreCase("REMOTE"))
+		{
+			driver  = getRemoteDriver();
+		}
+		else
+		{
+			driver  = getLocalDriver();
+		}
+		return driver;
+	}
+	URL url;
+	public WebDriver getRemoteDriver()
+	{		
+		try {
+			url = new URL(configData.getData("SaucelabsURL"));
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		DesiredCapabilities capabilities = new DesiredCapabilities();
+		capabilities.setCapability("name", configData.getData("ApplicationName"));
+	    capabilities.setCapability(CapabilityType.BROWSER_NAME, configData.getData("Browser"));
+	    capabilities.setCapability(CapabilityType.VERSION, configData.getData("BrowserVersion"));
+	    capabilities.setCapability(CapabilityType.PLATFORM, configData.getData("OS"));
+	    capabilities.setCapability("screen-resolution", configData.getData("ScreenResolution"));
+	    capabilities.setCapability("username", configData.getData("SaucelabsUserName"));
+	    capabilities.setCapability("accessKey", configData.getData("SaucelabsAccessKey"));
+		driver = new RemoteWebDriver(url,capabilities);
+		return driver;
+	}
+	public WebDriver getLocalDriver()
 	{
 		if(configData.getData("Browser").equalsIgnoreCase("CHROME"))
 		{

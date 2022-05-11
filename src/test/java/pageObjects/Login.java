@@ -2,6 +2,7 @@ package pageObjects;
 
 import org.openqa.selenium.WebDriver;
 import appUtilities.ApplicationUtilities;
+import appUtilities.Base;
 import gUtilities.ReadProperties;
 
 public class Login
@@ -9,11 +10,11 @@ public class Login
 	WebDriver driver; //null
 	ReadProperties prop;
 	ApplicationUtilities utils;
-	public Login(WebDriver driver2) //1234
+	public Login(Base base) //1234
 	{
-		this.driver = driver2; //1234
-		prop = new ReadProperties("TestData/ApsrtcDev.properties");
-		utils = new ApplicationUtilities(driver2); //1234
+		this.driver = base.driver; //1234
+		prop = base.data;
+		utils = base.utils; //1234
 	}
 	public void launchApplication()
 	{

@@ -2,6 +2,7 @@ package pageObjects;
 
 import org.openqa.selenium.WebDriver;
 import appUtilities.ApplicationUtilities;
+import appUtilities.Base;
 import gUtilities.ReadProperties;
 
 public class TicketStatus
@@ -9,11 +10,11 @@ public class TicketStatus
 	WebDriver driver; //null
 	ReadProperties prop;
 	ApplicationUtilities utils;
-	public TicketStatus(WebDriver driver2) //1234
+	public TicketStatus(Base base) //1234
 	{
-		this.driver = driver2; //1234
-		prop = new ReadProperties("TestData/ApsrtcDev.properties");
-		utils = new ApplicationUtilities(driver2); //1234
+		this.driver = base.driver; //1234
+		prop = base.data;
+		utils = base.utils; //1234
 	}
 	public void navigateToTicketStatus()
 	{

@@ -2,6 +2,8 @@ package testScenarios;
 
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
+
+import appUtilities.Base;
 import appUtilities.DriverSetUp;
 import pageObjects.CancelTicket;
 import pageObjects.Home;
@@ -17,16 +19,18 @@ public class TestCases
 	TicketStatus ticketStatus ;
 	CancelTicket cancelTicket ;
 	TrackService trackService ;
+	Base base;
 	public TestCases()
 	{
 		//System.setProperty("webdriver.chrome.driver", "D:\\Softwares\\JarFiles\\chromedriver-win32-90\\chromedriver.exe");
 		//driver = new ChromeDriver(); //1234
-		driver = new DriverSetUp().getDriver();
-		login = new Login(driver); //1234
-		home = new Home(driver);
-		ticketStatus = new TicketStatus(driver);
-		cancelTicket = new CancelTicket(driver);
-		trackService = new TrackService(driver);
+		//driver = new DriverSetUp().getWebDriver(); // Local  or Remote
+		base = new Base();  //Box  - pen,pencil,eraser,sharpner
+		login = new Login(base); //1234
+		home = new Home(base);
+		ticketStatus = new TicketStatus(base);
+		cancelTicket = new CancelTicket(base);
+		trackService = new TrackService(base);
 	}
 	
 	
