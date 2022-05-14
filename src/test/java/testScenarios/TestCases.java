@@ -34,6 +34,14 @@ public class TestCases
 		trackService = new TrackService(base);
 	}
 	
+	@Test
+	public void scrollDown()
+	{
+		System.out.println("TestCase : BookTicketAndPrint ");
+		//launch , login , bookTicket , print , logout , close
+		login.launchApplication();
+		base.utils.jsScrollDown();
+	}
 	
 	//BookTicket , Print , Check Status , Cancel Ticket
 	@Test

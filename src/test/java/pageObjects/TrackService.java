@@ -19,7 +19,7 @@ public class TrackService
 	public void navigateToTrackService()
 	{
 		System.out.println("RC : Navigate to TrackService");
-		utils.clickElement("//a[@title='Track Service']");
+		utils.clickElement("//a[@title='Track Service']","TrackService");
 	}
 	public void trackBusService()
 	{

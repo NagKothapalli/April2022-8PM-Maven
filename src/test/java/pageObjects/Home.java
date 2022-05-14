@@ -31,9 +31,10 @@ public class Home
 		utils.typeText("//input[@name='destination']", prop.getData("ToCity"));
 		utils.fixedWait(1);
 		utils.clickEnter();
-		utils.clickElement("//input[@name='txtJourneyDate']");
+		utils.clickElement("//input[@name='txtJourneyDate']","Home");
 		utils.clickElement("//a[text()='"+prop.getData("JDate")+"']");
-		utils.clickElement("//input[@value='Check Availability']");
+		//utils.clickElement("//input[@value='Check Availability']");
+		utils.jsClick("//input[@value='Check Availability']");
 	}
 	
 	public void printTicket()

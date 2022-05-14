@@ -19,7 +19,7 @@ public class CancelTicket
 	public void navigateToCancelTicket()
 	{
 		System.out.println("RC : Navigate to CancelTicket");
-		utils.clickElement("//a[@title='Cancel Ticket']");
+		utils.clickElement("//a[@title='Cancel Ticket']","CancelTicket");
 	}
 	public void cancelBusTicket()
 	{

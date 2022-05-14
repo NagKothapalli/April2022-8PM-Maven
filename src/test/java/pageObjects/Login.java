@@ -30,7 +30,7 @@ public class Login
 	public void logoutFromApplication()
 	{
 		System.out.println("RC : Logout From Application");
-		utils.clickElement("//a[@title='Home']");
+		utils.clickElement("//a[@title='Home']","Logout");
 	}
 
 	public void closeApplication()

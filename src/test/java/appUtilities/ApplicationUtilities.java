@@ -1,8 +1,15 @@
 package appUtilities;
 
+import java.io.File;
 import java.time.Duration;
+import java.util.Random;
+
+import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -16,11 +23,13 @@ public class ApplicationUtilities
 	Actions actions;
 	WebDriverWait wait;	
 	String name; //null
+	JavascriptExecutor js;
 	public ApplicationUtilities(WebDriver driver) //1234
 	{
 		this.driver = driver;
 		actions = new Actions(driver); //1234
 		wait = new WebDriverWait(driver, Duration.ofSeconds(25));
+		js = (JavascriptExecutor)driver ;   
 	}
 	
 	public void fixedWait(int sec)
@@ -55,7 +64,13 @@ public class ApplicationUtilities
 	}
 	public void clickElement(String myxpath)
 	{
-		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(myxpath)));		
+		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(myxpath)));			
+		driver.findElement(By.xpath(myxpath)).click();
+	}
+	public void clickElement(String myxpath,String objName)
+	{
+		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(myxpath)));	
+		TakeErrorScreenShot(objName);
 		driver.findElement(By.xpath(myxpath)).click();
 	}
 	public void clickElement(WebElement element)
@@ -66,13 +81,42 @@ public class ApplicationUtilities
 	}	
 	public void typeText(String myxpath,String txt)
 	{
-		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(myxpath)));		
+		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(myxpath)));	
+		TakeErrorScreenShot(txt);
 		driver.findElement(By.xpath(myxpath)).sendKeys(txt);
 	}	
+	
 	public void typeText(WebElement element,String txt)
 	{
 		wait.until(ExpectedConditions.elementToBeClickable(element));		
 		element.sendKeys(txt);
+	}
+	String screenshotfilepath;
+	public String TakeErrorScreenShot(String fname) {
+		File scrFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+		try {
+			screenshotfilepath = new File(".").getCanonicalPath() + "\\ScreenShots\\" + fname
+					+ new Random().nextInt(9999) + ".png";
+			FileUtils.copyFile(scrFile, new File(screenshotfilepath));
+		} catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		scrFile = null;
+		return screenshotfilepath;
+	}
+
+	public void jsClick(String myxpath)
+	{
+		System.out.println("JS CLICK EXECUTED");		    		
+        WebElement button =driver.findElement(By.xpath(myxpath));		
+        js.executeScript("arguments[0].click();", button);
+	}
+	public void jsScrollDown()
+	{
+		 //Vertical scroll down by 600  pixels		
+        js.executeScript("window.scrollBy(0,600)");	
+
 	}
 	
 
