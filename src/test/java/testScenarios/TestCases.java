@@ -117,5 +117,20 @@ public class TestCases
 		login.logoutFromApplication();
 		login.closeApplication();
 	}
+	@Test
+	public void bookTicketPrintAndCheckStatus()
+	{
+		System.out.println("TestCase : BookTicketCheckStatusAndPrint ");
+		//launch , login , bookTicket , print , logout , close
+		login.launchApplication();
+		login.loginToApplication();
+		home.navigateToHome();
+		home.bookTicket();		
+		ticketStatus.navigateToTicketStatus();
+		ticketStatus.checkTicketStatus();
+		home.printTicket();
+		login.logoutFromApplication();
+		login.closeApplication();
+	}
 
 }
